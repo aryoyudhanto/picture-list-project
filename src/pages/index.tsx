@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import { DatasType } from "../utils/type/Type";
 import Layout from "../components/Layout";
@@ -41,17 +42,33 @@ const index = () => {
     if (checkExist) {
       let parseFav: DatasType[] = JSON.parse(checkExist);
       let doubleExist = parseFav.some((item) => item.id === data.id);
-      if (doubleExist) {        
-        alert("The user is already in the favorites list");
+      if (doubleExist) {    
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "The user is already in the favorites list",
+        });
       } else {
         parseFav.push(data);
         localStorage.setItem("FavUser", JSON.stringify(parseFav));
         dispatch(setFavorites(parseFav));
-        alert("User added to favorite");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          text: "User added to favorite",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     } else {
       localStorage.setItem("FavUser", JSON.stringify([data]));
-      alert("User added to favorite");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        text: "User added to favorite",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }
 

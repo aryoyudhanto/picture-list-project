@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux/es/exports";
+import Swal from "sweetalert2";
 
 import Card from "../components/Card";
 import Layout from "../components/Layout";
@@ -22,12 +23,30 @@ const Favorite = () => {
   }
 
   function deleteFav(data: DatasType) {
-    let delDatas: DatasType[] = datas.slice();
-    const filterData = delDatas.filter((item) => item.id !== data.id);
+    Swal.fire({
+      title: `Are you sure want to delete ${data.name} from favorite list?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let delDatas: DatasType[] = datas.slice();
+        const filterData = delDatas.filter((item) => item.id !== data.id);
 
-    localStorage.setItem("FavUser", JSON.stringify(filterData));
-    dispatch(setFavorites(filterData));
-    alert(`Delete ${data.name} from favorite list`);
+        localStorage.setItem("FavUser", JSON.stringify(filterData));
+        dispatch(setFavorites(filterData));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          text: "Delete successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   }
 
   return (
@@ -48,9 +67,8 @@ const Favorite = () => {
                   onclickFav={() => deleteFav(data)}
                   nameButton="Delete from favorite"
                 />
-                );
-              })
-            }
+              );
+            })}
           </div>
         </>
       ) : (
