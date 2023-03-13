@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="items-center grid grid-cols-2 w-full">
         <Link
           to="/"
-          className={`btn btn-ghost normal-case font-bold text-2xl text-white `}
+          className={`btn btn-ghost normal-case text-xl text-white `}
         >
-          <p>Movies</p>
+          <p>Users App</p>
         </Link>
         <div className="w-full">
           <p className="text-right mr-4">

@@ -16,7 +16,7 @@ const Card: FC<CardProps> = ({
   onclickFav,
 }) => {
   return (
-    <div className="card bg-base-100 shadow-xl image-full mt-3 md:mt-0">
+    <div className="card bg-base-100 shadow-xl image-full mt-3 md:mt-0 hover:scale-95">
       <figure>
         <img
           src="https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg"
@@ -31,8 +31,8 @@ const Card: FC<CardProps> = ({
           @{username}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary" onClick={onclickFav}>
-            Buy Now
+          <button className="btn capitalize bg-blue-500 hover:bg-blue-600 border-none hover:scale-105" onClick={onclickFav}>
+            Add to Favorite
           </button>
         </div>
       </div>

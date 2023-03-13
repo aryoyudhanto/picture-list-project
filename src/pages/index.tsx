@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { DatasType } from "../utils/Type";
 import Layout from "../components/Layout";
+import Card from "../components/Card";
 
 const index = () => {
   const [datas, setDatas] = useState<DatasType[]>([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchData();
@@ -25,28 +28,26 @@ const index = () => {
         console.log(message);
       });
   }
+
+  function onclickDetail(id: number){
+    navigate(`/detail/${id}`)
+  }
+
   return (
     <Layout>
-      <p className="text-7xl text-red-500">Project</p>
-      {datas.map((data) => {
-        return (
-          <div className="card card-compact w-96 bg-base-100 shadow-xl" key={data.id}>
-            <figure>
-              <img
-                src=""
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{data.name}</h2>
-              <p>{data.username}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+      <p className="text-2xl font-bold text-black mx-3 mt-12 mb-5">User List</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-3 m-3">
+        {datas.map((data) => {
+          return (
+            <Card
+              key={data.id}
+              name={data.name}
+              username={data.username}
+              onclickDetail={()=>onclickDetail(data.id)}
+            />
+          );
+        })}
+      </div>
     </Layout>
   );
 };
