@@ -6,6 +6,7 @@ interface CardProps {
   username?: string;
   onclickDetail?: () => void;
   onclickFav?: () => void;
+  nameButton?: string
 }
 
 const Card: FC<CardProps> = ({
@@ -14,6 +15,7 @@ const Card: FC<CardProps> = ({
   username,
   onclickDetail,
   onclickFav,
+  nameButton
 }) => {
   return (
     <div className="card bg-base-100 shadow-xl image-full mt-3 md:mt-0 hover:scale-95">
@@ -32,7 +34,7 @@ const Card: FC<CardProps> = ({
         </p>
         <div className="card-actions justify-end">
           <button className="btn capitalize bg-blue-500 hover:bg-blue-600 border-none hover:scale-105" onClick={onclickFav}>
-            Add to Favorite
+            {nameButton}
           </button>
         </div>
       </div>

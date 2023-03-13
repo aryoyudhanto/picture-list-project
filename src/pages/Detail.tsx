@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../components/Layout";
-import { DatasType, DetailDatasType } from "../utils/Type";
+import { DatasType, DetailDatasType } from "../utils/type/Type";
 
 const Detail = () => {
   const [datas, setDatas] = useState<DatasType[]>([]);

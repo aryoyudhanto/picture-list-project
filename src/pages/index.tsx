@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { DatasType } from "../utils/Type";
+import { DatasType } from "../utils/type/Type";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
+import { useDispatch } from "react-redux/es/exports";
+import { setFavorites } from "../utils/redux/reducers/reducers";
 
 const index = () => {
   const [datas, setDatas] = useState<DatasType[]>([]);
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -29,8 +32,27 @@ const index = () => {
       });
   }
 
-  function onclickDetail(id: number){
-    navigate(`/detail/${id}`)
+  function onClickDetail(id: number) {
+    navigate(`/detail/${id}`);
+  }
+
+  function onClickFav(data: DatasType) {
+    const checkExist = localStorage.getItem("FavUser");
+    if (checkExist) {
+      let parseFav: DatasType[] = JSON.parse(checkExist);
+      let doubleExist = parseFav.some((item) => item.id === data.id);
+      if (doubleExist) {        
+        alert("The user is already in the favorites list");
+      } else {
+        parseFav.push(data);
+        localStorage.setItem("FavUser", JSON.stringify(parseFav));
+        dispatch(setFavorites(parseFav));
+        alert("User added to favorite");
+      }
+    } else {
+      localStorage.setItem("FavUser", JSON.stringify([data]));
+      alert("User added to favorite");
+    }
   }
 
   return (
@@ -43,7 +65,9 @@ const index = () => {
               key={data.id}
               name={data.name}
               username={data.username}
-              onclickDetail={()=>onclickDetail(data.id)}
+              onclickDetail={() => onClickDetail(data.id)}
+              onclickFav={() => onClickFav(data)}
+              nameButton="Add to favorite"
             />
           );
         })}
