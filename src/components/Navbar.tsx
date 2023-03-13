@@ -5,18 +5,18 @@ const Navbar = () => {
   return (
     <div className="navbar bg-blue-500">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl text-white">Users App</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl text-white">Users App</Link>
       </div>
       <div className="flex flex-1 justify-end">
         <div className="flex-none">
           <ul className="menu menu-horizontal p-1">
             <li>
-              <Link to="/" className="text-white ">
+              <Link to="/" className="text-white text-sm md:text-base ">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/favorite" className="text-white ">
+              <Link to="/favorite" className="text-white text-sm md:text-base">
                 Favorite
               </Link>
             </li>
@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="flex-none">
-        <div className="dropdown dropdown-end mr-10 ">
+        <div className="dropdown dropdown-end ">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar text-white">
           <svg
               xmlns="http://www.w3.org/2000/svg"

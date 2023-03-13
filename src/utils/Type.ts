@@ -9,6 +9,17 @@ export interface DatasType{
     website: string
   }
 
+  export interface DetailDatasType{
+    id?: number
+    name?: string
+    username?: string
+    address?: catchPhrase
+    company?: CompanyType
+    email?: string
+    phone?: string
+    website?: string
+  }
+
 export interface catchPhrase{
     city: string
     geo: {

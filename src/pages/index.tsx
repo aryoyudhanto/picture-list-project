@@ -35,8 +35,8 @@ const index = () => {
 
   return (
     <Layout>
-      <p className="text-2xl font-bold text-black mx-3 mt-12 mb-5">User List</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-3 m-3">
+      <p className="text-2xl font-bold text-black mx-5 mt-12 mb-5">User List</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 xl:grid-cols-3 xl:gap-3 mx-5 my-3">
         {datas.map((data) => {
           return (
             <Card

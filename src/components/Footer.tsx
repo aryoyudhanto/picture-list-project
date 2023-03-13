@@ -13,7 +13,7 @@ const Footer = () => {
           <p>Users App</p>
         </Link>
         <div className="w-full">
-          <p className="text-right mr-4">
+          <p className="text-right mr-4 text-sm md:text-base">
             Copyright © 2023 - All right reserved
           </p>
         </div>
